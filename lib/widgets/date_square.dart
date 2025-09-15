@@ -1,17 +1,25 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:mood_tracker/utils/date_getter.dart';
+import '../utils/date_format_options.dart';
 
 class DateSquare extends StatefulWidget {
-  const DateSquare({super.key});
+  final DateFormatOption format;
+
+  const DateSquare({super.key, this.format = DateFormatOption.dayMonthYear});
 
   @override
-  _DateSquareState createState() => _DateSquareState();
+  DateSquareState createState() => DateSquareState();
 }
 
-class _DateSquareState extends State<DateSquare> {
+class DateSquareState extends State<DateSquare> {
   late DateTime today;
   Timer? _timer;
+
+  /// Returns a DateTime representing the current day at 00:00:00.
+  DateTime getToday() {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month, now.day);
+  }
 
   @override
   void initState() {
@@ -43,25 +51,39 @@ class _DateSquareState extends State<DateSquare> {
     super.dispose();
   }
 
+String formatDate(DateTime date) {
+  switch (widget.format) {
+    case DateFormatOption.yearMonthDay:
+      return "${date.year}-${date.month.toString().padLeft(2,'0')}-${date.day.toString().padLeft(2,'0')}";
+    case DateFormatOption.dayMonthYear:
+      return "${date.day.toString().padLeft(2,'0')}.${date.month.toString().padLeft(2,'0')}.${date.year}";
+    case DateFormatOption.monthDayYear:
+      return "${_monthAbbr(date.month)} ${date.day}, ${date.year}";
+  }
+}
+
+String _monthAbbr(int month) {
+  const names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return names[month-1];
+}
+
+
   @override
   Widget build(BuildContext context) {
-    final formatted = "${today.day.toString().padLeft(2,'0')}/"
-                      "${today.month.toString().padLeft(2,'0')}/"
-                      "${today.year}";
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.blue.shade100,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        formatted,
-        style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(
+          formatDate(today),
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
   }
+
+
 }
