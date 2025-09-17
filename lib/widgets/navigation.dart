@@ -42,7 +42,18 @@ class _NavigationState extends State<Navigation> {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text(_currentIndex == 0 ? 'Home' : 'Settings')),
+      appBar: AppBar(
+        title: Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Text(
+              _currentIndex == 0 ? 'Mood Tracker' : 'Settings',
+              style: const TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w600, // semi-bold
+            ),
+          ),
+        ),
+      ),
       body: pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,

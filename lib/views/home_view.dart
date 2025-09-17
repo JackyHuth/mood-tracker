@@ -10,8 +10,10 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: DateSquare(format: dateFormat),
+      body: Column(
+        children: [
+          Center(child: DateSquare(format: dateFormat)),
+        ],
       ),
     );
   }

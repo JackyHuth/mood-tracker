@@ -27,7 +27,7 @@ class _MoodTrackerAppState extends State<MoodTrackerApp> {
   }
 
   /// Date Format
-  DateFormatOption dateFormat = DateFormatOption.dayMonthYear;
+  DateFormatOption dateFormat = DateFormatOption.monthDayYear;
 
   void setDateFormat(DateFormatOption format) {
     setState(() {

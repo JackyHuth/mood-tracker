@@ -73,14 +73,27 @@ String _monthAbbr(int month) {
 
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(
-          formatDate(today),
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+        child: Column(
+        mainAxisSize: MainAxisSize.min, // so the Card wraps content tightly
+        children: [
+          const Text(
+            'Today',
+            style: TextStyle(
+              fontSize: 24, // smaller than the date
+              fontWeight: FontWeight.w500,
+            ),
           ),
-        ),
+          const SizedBox(height: 8), // space between "Today" and the date
+          Text(
+            formatDate(today),
+            style: const TextStyle(
+              fontSize: 46,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
       ),
     );
   }
