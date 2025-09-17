@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/date_square.dart';
+import '../widgets/date_card.dart';
 import '../utils/date_format_options.dart';
 
 class HomeView extends StatelessWidget {

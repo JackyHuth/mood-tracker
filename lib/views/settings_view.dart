@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/date_square.dart';
 import '../utils/date_format_options.dart';
 
 class SettingsView extends StatelessWidget {
