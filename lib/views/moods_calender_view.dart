@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mood_tracker/widgets/add_fab.dart';
 import '../widgets/date_card.dart';
 import '../utils/date_format_options.dart';
 
-class HomeView extends StatelessWidget {
-  final DateFormatOption dateFormat;
+class MoodsCalenderView extends StatelessWidget {
 
-  const HomeView({super.key, required this.dateFormat});
+  const MoodsCalenderView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          Center(child: DateSquare(format: dateFormat)),
         ],
       ),
     );

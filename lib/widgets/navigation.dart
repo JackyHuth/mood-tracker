@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../views/home_view.dart';
 import '../views/settings_view.dart';
+import '../views/moods_calender_view.dart';
 import '../utils/date_format_options.dart';
 
 class Navigation extends StatefulWidget {
@@ -31,8 +32,11 @@ class _NavigationState extends State<Navigation> {
 
   @override
   Widget build(BuildContext context) {
+    final titles = ['Mood Tracker', 'Calendar', 'Settings'];
+
     final pages = [
       HomeView(dateFormat: widget.dateFormat),
+      MoodsCalenderView(),
       SettingsView(
         darkMode: widget.darkMode,
         onToggleDarkMode: widget.onToggleDarkMode,
@@ -46,7 +50,7 @@ class _NavigationState extends State<Navigation> {
         title: Padding(
           padding: const EdgeInsets.only(top: 10),
           child: Text(
-              _currentIndex == 0 ? 'Mood Tracker' : 'Settings',
+              titles[_currentIndex],
               style: const TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.w600, // semi-bold
@@ -60,6 +64,7 @@ class _NavigationState extends State<Navigation> {
         onTap: _onTabSelected,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Calender'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
         ],
       ),
